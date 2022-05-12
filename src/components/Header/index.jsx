@@ -1,4 +1,3 @@
-/* eslint-disable  */
 /* Imports */
 import { useContext, useState } from 'react';
 import { AuthContext } from 'context/Auth';
@@ -20,14 +19,18 @@ import Typography from '@mui/material/Typography';
 import HeaderLogo from '../../assets/images/header-logo.svg';
 
 export default function Header() {
+  
+  // Declaração de variáveis
   const { user, logout } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
+  
+  // Função de abertura do menu
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  
+  // Função de fechamento do menu
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -37,7 +40,7 @@ export default function Header() {
       <Container>
         <Logo>
           <Link to="/dashboard">
-            <img src={HeaderLogo} alt="Logo da FFA" />
+            <img src={HeaderLogo} alt="Logo" />
           </Link>
         </Logo>
         {/* <Button
