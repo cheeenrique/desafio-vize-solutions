@@ -12,7 +12,8 @@ import { api } from 'services/api';
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-
+    
+    // Declaração de variáveis
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -36,7 +37,7 @@ export function AuthProvider({ children }) {
         try{
             // Declara os campos do login na API
             const response = await api.post('/api/authaccount/login', { email: email, password: password });
-
+            
             if(response.data.code === 0){
                 const loggedUser = response.data.data;
                 localStorage.setItem('user', JSON.stringify(loggedUser));
@@ -86,16 +87,16 @@ export function AuthProvider({ children }) {
 
     // Função de logout
     const logout = () => {
-        toast.success('Logout realizado com com sucesso!', { theme: "colored" });
+        toast.success('Logout realizado com sucesso!', { theme: "colored" });
         localStorage.removeItem('user');
         api.defaults.headers.Authorization = null;
         setUser(null);
         navigate('/');
     };
 
-    // Função para quando o token expirar
+    // Função de token expirado
     const expiredToken = () => {
-        toast.error('Token expirado, faça o login novamente!', { theme: "colored" });
+        toast.error('Token expirado, favor realizar o login novamente!', { theme: "colored" });
         localStorage.removeItem('user');
         api.defaults.headers.Authorization = null;
         setUser(null);
